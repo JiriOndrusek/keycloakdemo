@@ -25,6 +25,10 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+import org.springframework.security.oauth2.client.endpoint.NimbusAuthorizationCodeTokenResponseClient;
+import org.springframework.security.oauth2.client.endpoint.OAuth2AccessTokenResponseClient;
+import org.springframework.security.oauth2.client.endpoint.OAuth2AuthorizationCodeGrantRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -73,12 +77,21 @@ class SecurityConfig {
                         .and()
                     // This is the point where OAuth2 login of Spring 5 gets enabled
                     .oauth2Login()
+                        .tokenEndpoint()
+                        .accessTokenResponseClient(accessTokenResponseClient());
                         // I don't want a page with different clients as login options
                         // So i use the constant from OAuth2AuthorizationRequestRedirectFilter
                         // plus the configured realm as immediate redirect to Keycloak
-                        .loginPage(DEFAULT_AUTHORIZATION_REQUEST_BASE_URI + "/" + registrationId);
+//                        .loginPage(DEFAULT_AUTHORIZATION_REQUEST_BASE_URI + "/" + registrationId);
             }
         };
+    }
+
+    @Bean
+    public OAuth2AccessTokenResponseClient<OAuth2AuthorizationCodeGrantRequest>
+    accessTokenResponseClient() {
+
+        return new NimbusAuthorizationCodeTokenResponseClient();
     }
 }
 
@@ -91,7 +104,7 @@ class DemoController {
     // See, I am a fan of method level security
     @PreAuthorize("isAuthenticated()")
     @GetMapping(path = "/protected")
-    public ModelAndView protectedPage(final Principal principal) {
+    public ModelAndView protectedPage(final Principal principal, OAuth2AuthenticationToken authentication) {
         return new ModelAndView("index", Map.of("principal", principal));
     }
 

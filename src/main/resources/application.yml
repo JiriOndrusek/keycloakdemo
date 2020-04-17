@@ -1,9 +1,9 @@
 server:
-  port: 8082
+  port: 8081
 
 keycloak-client:
-  server-url: http://localhost:8080/auth
-  realm: test
+  server-url: http://localhost:8180/auth
+  realm: public-library
   registration-id: my-keycloak
 
 spring:
@@ -13,8 +13,8 @@ spring:
         registration:
           # This 'Demo:' is the id used inside the redirect-uri-template and must be the same as your realm
           my-keycloak:
-            client-id: test-app
-            client-secret: a0fe1b28-02f1-4751-a4eb-a72f78882a47
+            client-id: spring-boot-app
+            client-secret: eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJWNmFyMUZIUTNzQU43b214a2JCa0oxOXhfbGU2aTFBcm1wVVBieDdLTm40In0.eyJqdGkiOiJiYjkyZDc0OC1mMjE4LTQ4MmUtODEyNC02OTVmMjhkNDk2YzkiLCJleHAiOjE1ODcxMzM1ODYsIm5iZiI6MCwiaWF0IjoxNTg3MTMzMjg2LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgxODAvYXV0aC9yZWFsbXMvcHVibGljLWxpYnJhcnkiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiMDU2OTYwMzAtYjkzZS00ZTk3LWFiY2YtOTY1MDczMWE1MjRlIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoic3ByaW5nLWJvb3QtYXBwIiwiYXV0aF90aW1lIjowLCJzZXNzaW9uX3N0YXRlIjoiZjMxNGY3NTYtMDFhMi00ZGNkLTgwZTItYTRjODFkMzBjYTRlIiwiYWNyIjoiMSIsImFsbG93ZWQtb3JpZ2lucyI6WyJodHRwOi8vbG9jYWxob3N0OjgwODAiXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iLCJNZW1iZXIiXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6InByb2ZpbGUgZW1haWwiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsInByZWZlcnJlZF91c2VybmFtZSI6InNoZWxkb24ifQ.G9whE7fqToAwNfYlF-nT1hhpOG2T5HvIGYonyldBFMMTQN53LtlBTC3pX_2YW4GEV-DxOebL1fiHuS1Q2MJ2Lo-_zjylTmeqqKp17DrTjMDAeTXw9E-j50XKbvVZhWGzcJY2PeUihe_tY4mCdYZXNhXfTJ-P82O3wDldraesoLbNjvOxhFaSKuidcLUSHjfpc-_hE9mFsKpy7jM8IBTj6mM0gyIeAgtX75UINm6yLk5mpFK6BeLeGXUxWWT5JSnP2aWgL2yFtmNeb2mfIVtHThjL5d9nG84hLqQGQOGvQEWALtiwWh94W3AC8KHXN4QJ48D7MPwACJeInC-7uRVe7A
             client-name: some client
             provider: keycloak
             scope: openid, profile
